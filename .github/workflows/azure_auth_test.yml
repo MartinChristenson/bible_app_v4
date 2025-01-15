@@ -1,0 +1,31 @@
+name: Azure Authentication Test
+
+
+
+on: [push]
+
+
+
+jobs:
+
+  test_auth:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Azure Login
+
+        uses: azure/login@v1
+
+        with:
+
+          creds: ${{ secrets.AZURE_CREDENTIALS }}  
+
+      - name: Test Azure CLI Authentication
+
+        run: |
+
+          az account show 
